@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
     <title>Home Page</title>
 </head>
 <body>
-    Welcome to our site!
+    <div style="text-align: center;">
+        <h1>Welcome to our site!</h1> 
+    </div>
     {% if categories %}
-        <div>
+        <div style="text-align: center; font-size: 2em; margin-bottom: 15rem">
             {% for category in categories %}
-                <button onclick="window.location.href=
-                '/pages/articles/{{ category.name }}'">{{ category.name }}
-                </button>
+                <a href='/pages/articles/{{ category.name }}'">{{ category.name }}</a>
             {% endfor %}
         </div>
     {% endif %}
