@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Статьи</title>
+    <title>Статьи по теме {{ category_name }}</title>
 </head>
 <body>
-    <div>
-        {% for article in articles %}
-            <h1>{{ article.title }}</h1>
-            <p>{{ article.content }}</p>
-        {% endfor %}
-    </div>
+    {% if articles %}
+        <div>
+            {% for article in articles %}
+                <h1>{{ article.title }}</h1>
+                <p>{{ article.content }}</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div>
+            <h1>Статей по теме {{ category_name }} не найдено!</h1>
+        </div>
+    {% endif %}
 </body>
 </html>

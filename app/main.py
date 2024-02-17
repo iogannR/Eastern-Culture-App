@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+import fastapi
 import fastapi.staticfiles
 
 from app.api.routers.articles \
@@ -8,7 +8,7 @@ from app.api.routers.categories \
 from app.api.routers.pages \
     import router as router_pages
 
-app = FastAPI(
+app = fastapi.FastAPI(
     title="Information Portal App dedicated to Russian-Chinese cooperation"
 )
 

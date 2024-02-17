@@ -7,18 +7,14 @@
 </head>
 <body>
     Welcome to our site!
-    <div>
-        {% for category in categories %}
-            <button id="ArticlesByCategoryName">{{ category.name|string }}</button>
-            <script>
-                const button = document.getElementById("ArticlesByCategoryName");
-                
-                button.addEventListener("click", () => {
-                    const category_name = "{{ category.name }}";
-                    window.location.href = `/pages/articles/${category_name}`;
-                });
-            </script>
-        {% endfor %}
-    </div>
+    {% if categories %}
+        <div>
+            {% for category in categories %}
+                <button onclick="window.location.href=
+                '/pages/articles/{{ category.name }}'">{{ category.name }}
+                </button>
+            {% endfor %}
+        </div>
+    {% endif %}
 </body>
 </html>

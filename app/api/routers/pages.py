@@ -14,7 +14,7 @@ templates = fastapi.templating.Jinja2Templates(
     directory="app/templates"
 )
 
-@router.get("", response_class=fastapi.responses.HTMLResponse)
+@router.get("/home-page", response_class=fastapi.responses.HTMLResponse)
 async def home_page(
     request: fastapi.Request, 
     categories=fastapi.Depends(get_categories)
@@ -30,12 +30,14 @@ async def home_page(
 @router.get("/articles/{category_name}", response_class=fastapi.responses.HTMLResponse)
 async def get_articles_by_category_name_on_page(
     request: fastapi.Request,
+    category_name: str,
     articles=fastapi.Depends(get_articles_by_category_name)
 ):
     return templates.TemplateResponse(
         "articles.html",
         context={
             "request": request,
-            "articles": articles
+            "articles": articles,
+            "category_name": category_name
         }
     )
