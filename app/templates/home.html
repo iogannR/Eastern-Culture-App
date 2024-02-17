@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    Welcome to our site!
+    <div>
+        {% for category in categories %}
+            <button id="ArticlesByCategoryName">{{ category.name|string }}</button>
+            <script>
+                const button = document.getElementById("ArticlesByCategoryName");
+                
+                button.addEventListener("click", () => {
+                    const category_name = "{{ category.name }}";
+                    window.location.href = `/pages/articles/${category_name}`;
+                });
+            </script>
+        {% endfor %}
+    </div>
+</body>
+</html>
