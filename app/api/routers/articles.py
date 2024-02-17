@@ -23,6 +23,13 @@ async def get_articles_by_category_name(category_name, session: AsyncSession = D
     return result
 
 
+@router.get("/get-articles")
+async def get_articles(session: AsyncSession = Depends(get_session)) -> list[SArticle]:
+    articles_service = ArticlesService()
+    result = await articles_service.get_all_instances(session=session)
+    return result
+
+
 @router.post("/create-articles")
 async def create_article(
     payload: CreateArticle, 
@@ -33,11 +40,4 @@ async def create_article(
         session=session, 
         payload=payload
     )
-    return result
-
-
-@router.get("/get-articles")
-async def get_posts(session: AsyncSession = Depends(get_session)) -> list[SArticle]:
-    articles_service = ArticlesService()
-    result = await articles_service.get_all_instances(session=session)
     return result
