@@ -1,8 +1,8 @@
 import uuid
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.api.schemas.articles_schemas import CreateArticle, SArticle
-from app.database.service.article_service import ArticlesService
+from app.api.schemas.articles import CreateArticle, SArticle
+from app.database.service.article import ArticlesService
 
 from app.database.session import get_session
 

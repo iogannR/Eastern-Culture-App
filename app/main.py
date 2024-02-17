@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
-from app.api.routers.articles_router \
+from app.api.routers.articles \
     import router as router_articles
-from app.api.routers.categories_router \
+from app.api.routers.categories \
     import router as router_categories
 
 app = FastAPI(

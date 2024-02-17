@@ -1,6 +1,6 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.api.schemas.articles_schemas import SArticle
+from app.api.schemas.articles import SArticle
 
 from app.database.models.article import Article
 from app.database.models.category import Category
