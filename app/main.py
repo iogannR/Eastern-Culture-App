@@ -1,11 +1,11 @@
-from fastapi import FastAPI
+import fastapi
 
 from app.api.routers.articles \
     import router as router_articles
 from app.api.routers.categories \
     import router as router_categories
 
-app = FastAPI(
+app = fastapi.FastAPI(
     title="Information Portal App dedicated to Russian-Chinese cooperation"
 )
 

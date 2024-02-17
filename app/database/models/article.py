@@ -1,6 +1,6 @@
-from uuid import uuid4
-from sqlalchemy import Column, ForeignKey, Integer, String, UUID, Text
-from sqlalchemy.orm import relationship
+import uuid
+import sqlalchemy as sa
+import sqlalchemy.orm as sa_orm
 
 from app.database.base import Base
 
@@ -8,11 +8,11 @@ from app.database.base import Base
 class Article(Base):
     __tablename__ = "articles"
     
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
-    title = Column(String(64), nullable=False)
-    annotation = Column(Text, default="Info Article")
-    content = Column(Text, nullable=False)
-    image_id = Column(Integer)
+    id = sa.Column(sa.UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    title = sa.Column(sa.String(64), nullable=False)
+    annotation = sa.Column(sa.Text, default="Info Article")
+    content = sa.Column(sa.Text, nullable=False)
+    image_id = sa.Column(sa.Integer)
     
-    category_id = Column(UUID(as_uuid=True), ForeignKey("categories.id"))
-    category = relationship("Category", back_populates="article")
+    category_id = sa.Column(sa.UUID(as_uuid=True), sa.ForeignKey("categories.id"))
+    category = sa_orm.relationship("Category", back_populates="article")

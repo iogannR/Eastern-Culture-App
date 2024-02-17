@@ -1,46 +1,57 @@
-from typing import Generic, Type, TypeVar
-from pydantic import BaseModel
-from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
+import typing
+import pydantic
+import sqlalchemy as sa
+import sqlalchemy.ext.asyncio as sa_ext_asyncio
 import uuid
 
 from app.database.base import Base
 
 
 # Declaration of basic model and schemas annotations
-ModelType = TypeVar("ModelType", bound=Base)
-CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)
-UpdateSchemaType = TypeVar("UpdateSchemaType", bound=BaseModel)
+ModelType = typing.TypeVar("ModelType", bound=Base)
+CreateSchemaType = typing.TypeVar("CreateSchemaType", bound=pydantic.BaseModel)
+UpdateSchemaType = typing.TypeVar("UpdateSchemaType", bound=pydantic.BaseModel)
+PartialUpdateSchemaType = typing.TypeVar(
+    "PartialUpdateSchemaType", 
+    bound=pydantic.BaseModel
+)
 
 # Base Service class
-class BaseService(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
-    model: Type[ModelType] = None
-    
+class BaseService(typing.Generic[ModelType, CreateSchemaType, UpdateSchemaType, PartialUpdateSchemaType]):
+    def __init__(self, model: typing.Type[ModelType]) -> None:
+        self.model = model   
 
     # Getting all instances
-    async def get_all_instances(self, session: AsyncSession) -> list[ModelType]:
-        query = await session.execute(select(self.model))
+    async def get_all_instances(
+        self, session: sa_ext_asyncio.AsyncSession
+    ) -> list[ModelType]:
+        query = await session.execute(sa.select(self.model))
         return query.scalars().all()
     
     # Getting instance by id
-    async def get_instance_by_id(self, session: AsyncSession, instance_id: uuid.UUID) -> ModelType | None:
+    async def get_instance_by_id(
+        self, session: sa_ext_asyncio.AsyncSession, instance_id: uuid.UUID
+    ) -> ModelType | None:
         return await session.get(self.model, instance_id)
     
     # Creating a new instance
-    async def create_instance(self, session: AsyncSession, payload: CreateSchemaType) -> ModelType:
+    async def create_instance(
+        self, session: sa_ext_asyncio.AsyncSession, payload: CreateSchemaType
+    ) -> ModelType:
         new_instance = self.model(**payload.model_dump())
         session.add(new_instance)
         await session.commit()
         return new_instance
     
-    # Updating instance data
+    # Full/partial updating instance data 
     async def update_instance(
         self, 
-        session: AsyncSession, 
+        session: sa_ext_asyncio.AsyncSession, 
         instance: ModelType, 
-        payload: UpdateSchemaType
+        payload: UpdateSchemaType | PartialUpdateSchemaType,
+        partial: bool = False
     ) -> ModelType:
-        for name, value in payload.model_dump().items():
+        for name, value in payload.model_dump(exclude_unset=partial).items():
             setattr(instance, name, value)
         await session.commit()
         return instance

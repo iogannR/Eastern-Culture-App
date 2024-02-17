@@ -12,7 +12,23 @@ class CreateArticle(BaseModel):
 
 class SArticle(CreateArticle):
     id: uuid.UUID
+    
+    class Config:
+        from_attributes = True
 
 
 class UpdateArticle(BaseModel):
-    ...    
+    title: str
+    annotation: str
+    content: str
+    
+    class Config:
+        from_attributes = True
+
+class PartialUpdateArticle(BaseModel):
+    title: str | None
+    annotation: str | None
+    content: str | None
+    
+    class Config:
+        from_attributes = True

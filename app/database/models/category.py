@@ -1,14 +1,15 @@
 import uuid
-from sqlalchemy import UUID, Column, String
-from sqlalchemy.orm import relationship
+import sqlalchemy as sa
+import sqlalchemy.orm as sa_orm
+
 from app.database.base import Base
 
 # Articles category ORM-model
 class Category(Base):
     __tablename__ = "categories"
     
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    name = Column(String(64), unique=True, nullable=False)
-    description = Column(String)
+    id = sa.Column(sa.UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    name = sa.saColumn(sa.String(64), unique=True, nullable=False)
+    description = sa.Column(sa.String)
     
-    article = relationship("Article", back_populates="category")
+    article = sa_orm.relationship("Article", back_populates="category")
