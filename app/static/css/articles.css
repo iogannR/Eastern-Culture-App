@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+}
+  
+.post {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+}
+  
+.post-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+  
+.post-description {
+    font-size: 16px;
+}
+
+header {
+    text-align: center;
+    background-color: none;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+  
+header h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+  

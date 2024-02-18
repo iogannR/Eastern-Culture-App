@@ -1,5 +1,5 @@
 import fastapi
-import fastapi.staticfiles
+from fastapi.staticfiles import StaticFiles
 
 from app.api.routers.articles \
     import router as router_articles
@@ -12,12 +12,8 @@ app = fastapi.FastAPI(
     title="Information Portal App dedicated to Russian-Chinese cooperation"
 )
 
-app.mount(
-    "/static", 
-    fastapi.staticfiles.StaticFiles(directory="app/static"), 
-    "static"
-)
-
 app.include_router(router_articles)
 app.include_router(router_categories)
 app.include_router(router_pages)
+
+app.mount("/static", StaticFiles(directory="app/static"), "static")

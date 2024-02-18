@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/articles.css') }}">
     <title>Статьи по теме {{ category_name }}</title>
 </head>
 <body>
+    <header >
+        <h1>Статьи по теме {{ category_name }}</h1>
+    </header>
     {% if articles %}
-        <div>
+    <div class="container">
             {% for article in articles %}
-                <h1>{{ article.title }}</h1>
-                <p>{{ article.content }}</p>
+                <div class="post">
+                    <div class="post-title">{{ article.title }}</div>
+                    <div class="post-content">{{ article.content }}</div>
+                </div>
             {% endfor %}
-        </div>
+    </div>
     {% else %}
         <div>
             <h1>Статей по теме {{ category_name }} не найдено!</h1>

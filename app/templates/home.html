@@ -1,21 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}">
     <title>Home Page</title>
 </head>
+
 <body>
-    <div style="text-align: center;">
-        <h1>Welcome to our site!</h1> 
-    </div>
+    <header >
+        <h1>Восточная культура | Информационный портал</h1>
+    </header>
+
     {% if categories %}
-        <div style="text-align: center; font-size: 2em; margin-bottom: 15rem">
+        <nav>
             {% for category in categories %}
-                <a href='/pages/articles/{{ category.name }}'">{{ category.name }}</a>
+                <a href='/pages/articles/{{ category.name }}'>{{ category.name }}</a>
             {% endfor %}
-        </div>
+        </nav>
     {% endif %}
+
+    <form>
+        <label for="name">Ваше имя:</label>
+        <input type="text" id="name">
+    
+        <label for="email">Ваш email:</label>
+        <input type="email" id="email">
+    
+        <label for="message">Ваше сообщение:</label>
+        <textarea id="message" rows="4"></textarea>
+    
+        <button type="submit">Отправить</button>
+      </form>
+      
 </body>
 </html>
