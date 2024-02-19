@@ -14,11 +14,11 @@
     </header>
 
     {% if categories %}
-        <nav>
             {% for category in categories %}
+            <nav>
                 <a href='/pages/articles/{{ category.name }}'>{{ category.name }}</a>
+            </nav>
             {% endfor %}
-        </nav>
     {% endif %}
 
     <form>

@@ -35,7 +35,7 @@ async def get_articles(
     return result
 
 
-@router.post("/create-articles")
+@router.post("/create-article")
 async def create_article(
     payload: CreateArticle, 
     session: sa_ext_asyncio.AsyncSession = fastapi.Depends(get_session)
