@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" {% block link %}{% endblock %}>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <header>{% block header %}{% endblock header %}</header>
+        {% block content %}{% endblock content %}
+        <footer>
+            <p>
+                Project by Romadin Ivan <br>
+                Check on GitHub: <a href="https://github.com/iogannR" target="_blank">iogannR</a>!
+            </p>
+        </footer>
+    </body>
+</html>

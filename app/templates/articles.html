@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', path='css/articles.css') }}">
-    <title>Статьи по теме {{ category_name }}</title>
-</head>
-<body>
-    <header>Статьи по теме {{ category_name }}</header>
-    
+{% extends "base.html" %}
+
+{% block link %}
+    href="{{ url_for('static', path='css/articles.css') }}"
+{% endblock %}
+
+{% block title %}Статьи по теме {{ category_name }}{% endblock %}
+
+{% block header %}Cтaтьи по теме {{ category_name }}{% endblock %}
+
+{% block content %}
     <main>
         {% if articles %}
             <div class="articles">
@@ -24,16 +24,10 @@
                         </div>
                     </div>
                 </a>
-                    {% endfor %}
+                {% endfor %}
             </div>
         {% else %}
             <div class="denial">Отсутствует информация</div>
         {% endif %}
     </main>
-
-    <footer>
-        <p>Project by Romadin Ivan <br> Check on GitHub: <a href="https://github.com/iogannR" target="_blank">iogannR</a>!</p>
-    </footer>
-
-</body>
-</html>
+{% endblock %}
