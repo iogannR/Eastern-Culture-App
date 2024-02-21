@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +7,33 @@
     <title>Статьи по теме {{ category_name }}</title>
 </head>
 <body>
-    <header >
-        <h1>Статьи по теме {{ category_name }}</h1>
-    </header>
-    {% if articles %}
-    <div class="container">
-            {% for article in articles %}
-                <div class="post">
-                    <div class="post-title">{{ article.title }}</div>
-                    <div class="post-content">{{ article.content }}</div>
-                </div>
-            {% endfor %}
-    </div>
-    {% else %}
-        <div>
-            <h1>Статей по теме {{ category_name }} не найдено!</h1>
-        </div>
-    {% endif %}
+    <header>Статьи по теме {{ category_name }}</header>
+    
+    <main>
+        {% if articles %}
+            <div class="articles">
+                {% for article in articles %}
+                <a href="/pages/articles/Китай/article?id={{ article.id }}">   
+                    <div class="article">
+                        <div class="article-image">
+                            <img src="{{ url_for('static', path='images/' + article.image_id|string + '.webp') }}" alt="">
+                        </div>
+                        <div class="article-content">
+                            <h3>{{ article.title }}</h3>
+                            <span>{{ article.content }}</span>
+                        </div>
+                    </div>
+                </a>
+                    {% endfor %}
+            </div>
+        {% else %}
+            <div class="denial">Отсутствует информация</div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>Project by Romadin Ivan <br> Check on GitHub: <a href="https://github.com/iogannR" target="_blank">iogannR</a>!</p>
+    </footer>
+
 </body>
 </html>

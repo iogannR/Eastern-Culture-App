@@ -37,3 +37,8 @@ async def get_categories(session: sa_ext_asyncio.AsyncSession = fastapi.Depends(
     category_service = CategoryService(Category)
     result = await category_service.get_all_instances(session=session)
     return result
+
+
+@router.patch("/")
+async def update_categories(session: sa_ext_asyncio.AsyncSession = fastapi.Depends(get_session)):
+    ...
