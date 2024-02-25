@@ -12,4 +12,4 @@ class Category(Base):
     name = sa.Column(sa.String(64), unique=True, nullable=False)
     description = sa.Column(sa.String)
     
-    article = sa_orm.relationship("Article", back_populates="category")
+    articles = sa_orm.relationship("Article", back_populates="category")

@@ -4,7 +4,7 @@ import sqlalchemy.orm as sa_orm
 
 from app.database.base import Base
 
-# Articless ORM-model
+# Articles ORM-model
 class Article(Base):
     __tablename__ = "articles"
     
@@ -15,4 +15,6 @@ class Article(Base):
     image_id = sa.Column(sa.Integer)
     
     category_id = sa.Column(sa.UUID(as_uuid=True), sa.ForeignKey("categories.id"))
-    category = sa_orm.relationship("Category", back_populates="article")
+    
+    category = sa_orm.relationship("Category", back_populates="articles")
+    comments = sa_orm.relationship("Comment", back_populates="article")

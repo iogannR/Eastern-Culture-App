@@ -7,8 +7,8 @@ body {
 header {
     background-color: #f1f1f1;
     padding: 20px;
-    font-size: 30px;
     margin: 0;
+    font-size: 30px;
     text-align: center;
 }
 
@@ -98,3 +98,8 @@ a:hover {
     color: #eb6776;
 }
 
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}

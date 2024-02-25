@@ -32,7 +32,18 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #ccc;
+    background-color: #f1f1f1;
+    color: #eb6776;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+    color: #eb6776
 }
 
 form {
@@ -94,4 +105,10 @@ footer {
     padding: 10px;
     text-align: center;
     color: #333;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }

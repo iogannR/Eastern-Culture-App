@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block link %}
+    href="{{ url_for('static', path='css/single.css')}}"
+{% endblock %}
+
+{% block title %}{{ article.title }}{% endblock %}
+{% block header %}{{ article.title }}{% endblock %}
+
+{% block content %}
+    <article>
+        {{ article.content }}
+    </article>
+{% endblock %}

@@ -9,17 +9,15 @@
 {% endblock %}
 
 {% block header %}
-    Восточная культура | Информационный портал
+    HarmonyHub - Info Portal
 {% endblock %}
 
 {% block content %}
-    <main>
-        {% if categories %}
-                {% for category in categories %}
-                <nav>
-                    <a href='/pages/articles/{{ category.name }}'>{{ category.name }}</a>
-                </nav>
-                {% endfor %}
-        {% endif %}
-    </main>
+    {% if categories %}
+            {% for category in categories %}
+            <nav>
+                <a href='/pages/articles/{{ category.name }}'>{{ category.name }}</a>
+            </nav>
+            {% endfor %}
+    {% endif %}
 {% endblock %}
