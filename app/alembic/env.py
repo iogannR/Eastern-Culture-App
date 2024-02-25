@@ -14,6 +14,7 @@ from app.config import settings
 from app.database.base import Base
 from app.database.models.article import Article
 from app.database.models.category import Category
+from app.database.models.comment import Comment
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
