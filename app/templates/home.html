@@ -1,23 +1,39 @@
-{% extends "base.html" %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}">
+    <title>Информационный портал</title>
+</head>
+<body>
+    <header>
+        <div class="header__inner">
+            <h1>Информационный портал</h1>
+        </div>
+        <div class="header__logo">
+            <a href="pages/home-page">HarmonyHub</a>
+        </div>
+    </header>
+    <div class="page__content">
+        <p>
+            China (Chinese: 中国; pinyin: Zhōngguó), officially the People's Republic of China 
+            is a country in East Asia. With a population exceeding 1.4 billion, 
+            it is the world's second-most-populous country-in-the-world.
+        </p>
+        <br>
+        <p>
+            
+        </p>
+    </div>
+    <div class="categories__container">
+        {% for category in categories %}
+            <h1>Категории статей</h1>
+            <div class="category__box">
+                <a href="/pages/{{ category.name}}/articles">{{ category.name }}</a>
+            </div>
+        {% endfor %}
+    </div> 
+</body>
+</html>
 
-{% block link %}
-    href="{{ url_for('static', path='css/styles.css') }}"
-{% endblock %}
-
-{% block title %}
-    Home Page
-{% endblock %}
-
-{% block header %}
-    HarmonyHub - Info Portal
-{% endblock %}
-
-{% block content %}
-    {% if categories %}
-            {% for category in categories %}
-            <nav>
-                <a href='/pages/articles/{{ category.name }}'>{{ category.name }}</a>
-            </nav>
-            {% endfor %}
-    {% endif %}
-{% endblock %}

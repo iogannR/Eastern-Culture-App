@@ -6,7 +6,8 @@ class CreateArticle(BaseModel):
     title: str
     annotation: str
     content: str
-    image_id: int
+    main_image_id: int
+    single_image_id: int
     category_id: uuid.UUID
 
 

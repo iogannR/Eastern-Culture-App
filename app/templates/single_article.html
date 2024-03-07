@@ -9,6 +9,9 @@
 
 {% block content %}
     <article>
+        <div class = "single-image">
+            <img src="{{ url_for('static', path='images/' + article.single_image_id|string + '.webp') }}">
+        </div>
         {{ article.content }}
     </article>
 {% endblock %}

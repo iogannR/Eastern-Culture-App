@@ -12,7 +12,8 @@ class Article(Base):
     title = sa.Column(sa.String(64), nullable=False)
     annotation = sa.Column(sa.Text, default="Info Article")
     content = sa.Column(sa.Text, nullable=False)
-    image_id = sa.Column(sa.Integer)
+    main_image_id = sa.Column(sa.Integer)
+    single_image_id = sa.Column(sa.Integer)
     
     category_id = sa.Column(sa.UUID(as_uuid=True), sa.ForeignKey("categories.id"))
     
